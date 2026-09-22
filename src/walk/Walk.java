@@ -1,6 +1,5 @@
 package walk;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -58,5 +57,26 @@ public class Walk {
 
 
 
+    private static int hashFile(File file) {
+        try {
+            InputStream is = new FileInputStream(file);
+            try {
+                int hash = 0x811c9dc5;
+                byte[] b = new byte[1024];
+                int c;
+                while ((c = is.read(b)) >= 0) {
+                    for (int i = 0; i < c; i++) {
+                        hash *= 0x01000193;
+                        hash ^= (b[i] & 0xff);
+                    }
+                }
+                return hash;
+            } finally {
+                is.close();
+            }
 
+        } catch (IOException e) {
+            throw new exception.FileHashException("Failed to hash " + file, e);
+        }
+    }
 }
