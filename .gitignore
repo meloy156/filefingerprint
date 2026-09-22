@@ -2,11 +2,26 @@
 *.iml
 target/
 build/
+
+### скомп классы
 *.class
 
+# jar тесты и библиотеки
+*.jar
 
+# серты
+*.cert
+*.txt
 
+# вых файлы
+output.txt
 
+# системный мусор
+Thumbs.db
+.DS_Store
+
+# тестовые артефакты
+__Test__Walk__/
 
 ### IntelliJ IDEA ###
 out/
